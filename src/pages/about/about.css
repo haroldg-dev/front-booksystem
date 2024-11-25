@@ -1,0 +1,140 @@
+/* Genel sayfa düzeni */
+.about-body {
+    font-family: Arial, sans-serif;
+    background-image: url('/src/assets/about.jpg '); /* Arka plan resmi */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-attachment: fixed;
+  }
+  
+  /* Ana container */
+  .about-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 1000px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow: hidden;
+    flex-wrap: wrap; /* Ekran küçüldüğünde öğeler alt alta geçebilsin */
+  }
+  
+  /* Sol alan - metin */
+  .about-left {
+    flex: 1;
+    padding: 20px;
+    color: #333;
+    text-align: left;
+  }
+  
+  /* Başlık */
+  .about-left h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Paragraf */
+  .about-left p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+  
+  /* Sağ alan - resim */
+  .about-right {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Dükkan resminin görünümü ve boyutu */
+  .about-image {
+    width: 100%;
+    max-width: 400px; /* Resmi büyütmek için genişlik */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    opacity: 0.8; /* Resmi biraz saydam yap */
+  }
+  
+  /* Responsive tasarım (Mobil cihazlar için) */
+  @media (max-width: 768px) {
+    .about-container {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .about-left {
+      margin-bottom: 20px; /* Alt alta geldiklerinde boşluk olsun */
+      padding: 10px;
+    }
+  
+    .about-right {
+      padding: 10px;
+    }
+  
+    .about-image {
+      max-width: 100%;
+    }
+  
+    .about-left h1 {
+      font-size: 2rem;
+    }
+  
+    .about-left p {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-container {
+      width: 90%;
+    }
+  
+    .about-left h1 {
+      font-size: 1.8rem;
+    }
+  
+    .about-left p {
+      font-size: 0.9rem;
+    }
+  }
+  
+  .shop-image {
+    flex: 0 0 300px; /* Resmin sabit genişliği */
+    height: 300px; /* Resmin yüksekliği */
+    background-image: url('/src/assets/about2.jpg'); /* Public/assets klasöründeki resim */
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* Konumlandırmayı aktif hale getirir */
+    overflow: hidden;
+  }
+  
+  /* Saydamlık için pseudo element kullanımı */
+  .shop-image::before {
+    content: ""; /* İçerik oluşturuluyor */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit; /* Arka plan resmi inherit edilerek kullanılır */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7; /* Saydamlık değeri */
+    z-index: 1; /* Resmin üzerine yerleşmesini sağlar */
+  }
+  

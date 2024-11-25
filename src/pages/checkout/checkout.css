@@ -1,0 +1,134 @@
+.checkoutBody {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f5f5f5, #d7eae6);
+  min-height: 100vh;
+}
+
+.checkout-container {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 90%;
+  text-align: center;
+}
+
+.checkout-intro {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.checkout-section {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.checkout-details {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.item-title {
+  font-weight: bold;
+  color: #333;
+}
+
+.item-description {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.item-price {
+  color: #6fa36f;
+  font-weight: bold;
+}
+
+.checkout-summary {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.summary-line span {
+  font-weight: bold;
+  color: #333;
+}
+
+.summary-line.total {
+  font-size: 1.2rem;
+  color: #6fa36f;
+}
+
+.checkout-button {
+  background-color: #6fa36f;
+  color: #fff;
+  padding: 15px 30px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-button:hover {
+  background-color: #0de82e;
+}
+
+@media (max-width: 768px) {
+  .checkout-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .checkout-intro {
+    font-size: 1rem;
+  }
+
+  .checkout-section {
+    margin-bottom: 20px;
+  }
+
+  .checkout-item {
+    font-size: 0.9rem;
+  }
+
+  .checkout-summary {
+    padding: 15px;
+  }
+
+  .summary-line {
+    font-size: 0.9rem;
+  }
+
+  .checkout-button {
+    padding: 12px 25px;
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,101 @@
+/* Booking Hero Section */
+#booking_hero {
+    background: url("../../assets/booking.jpg") no-repeat center center / cover;
+    min-height: 70vh; /* Daha büyük bir alan */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #booking_hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Daha koyu overlay */
+    z-index: 1;
+  }
+  
+  #booking_hero h1 {
+    color: #f9f9f9; /* Daha yumuşak beyaz ton */
+    font-size: 3rem;
+    text-transform: uppercase; /* Başlık metnini büyük harf yap */
+    font-weight: 700;
+    text-align: center;
+    z-index: 2;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8); /* Daha belirgin gölge efekti */
+  }
+  
+  /* Booking Form Section */
+  .booking-form {
+    background-color: rgba(255, 255, 255, 0.9); /* Yarı şeffaf beyaz arka plan */
+    border-radius: 12px; /* Daha yumuşak kenarlar */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Daha güçlü gölge efekti */
+    padding: 2rem 2.5rem;
+    z-index: 2;
+    position: relative;
+    width: 100%;
+    max-width: 600px; /* Daha geniş bir form */
+  }
+  
+  .booking-form .form-label {
+    color: #444; /* Daha sofistike koyu gri */
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .booking-form .form-control,
+  .booking-form .form-select {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
+  }
+  
+  .booking-form .form-control:focus,
+  .booking-form .form-select:focus {
+    border-color: #ff7f50; /* Canlı bir mercan rengi */
+    box-shadow: 0 0 8px rgba(255, 127, 80, 0.5);
+  }
+  
+  .booking-form button {
+    background-color: #ff7f50; /* Mercan rengi buton */
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 1.5rem;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .booking-form button:hover {
+    background-color: #e56743; /* Daha koyu bir ton */
+    transform: scale(1.05); /* Hafif büyüme efekti */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    #booking_hero {
+      min-height: 60vh;
+    }
+  
+    #booking_hero h1 {
+      font-size: 2rem; /* Küçük ekranlarda başlığı küçült */
+    }
+  
+    .booking-form {
+      padding: 1.5rem 1.8rem;
+      width: 90%;
+    }
+  
+    .booking-form button {
+      font-size: 1rem;
+    }
+  }
+  
