@@ -47,9 +47,7 @@ export function Header({ activeNav }: HeaderProps) {
     cursor: "pointer",
   };
 
-  const buttonHoverStyle: React.CSSProperties = {
-    backgroundColor: "magenta", // HOVER COLOR
-  };
+  
 
   return (
     <nav className="navbar navbar-expand-sm" style={navbarStyle} data-bs-theme="light">
@@ -116,7 +114,7 @@ export function Header({ activeNav }: HeaderProps) {
                 type="button"
                 onClick={handleBookBtn}
                 style={buttonStyle}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "magenta")}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#0d7d96")}
                 onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#333")}
               >
                 Book
