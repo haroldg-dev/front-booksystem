@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./header.css";
 
 export interface HeaderProps {
   activeNav: string;
@@ -34,6 +35,15 @@ export function Header({ activeNav }: HeaderProps) {
     // Navigate to the about page
     navigate("/about");
   }
+
+  const linkStyle: React.CSSProperties = {
+    color: "#000",
+    padding: "8px 20px",
+    borderRadius: "4px",
+    transition: "background-color 0.3s ease",
+    border: "none",
+    cursor: "pointer",
+  };
 
   const buttonStyle: React.CSSProperties = {
     backgroundColor: "#333",
@@ -89,7 +99,12 @@ export function Header({ activeNav }: HeaderProps) {
             <li className="nav-item">
               <button
                 className={`btn ${activeNav === "home" ? "active" : ""}`}
-                style={buttonStyle}
+                style={{
+                  ...linkStyle,
+                  color: activeNav === "home" ? "grey" : "#333",
+                  fontWeight: activeNav === "home" ? "bold" : "normal",
+                  textDecoration: activeNav === "home" ? "underline" : "none",
+                }}
                 onClick={() => navigate("/")}
               >
                 Home
@@ -102,7 +117,13 @@ export function Header({ activeNav }: HeaderProps) {
             >
               <button
                 className={`btn ${activeNav === "services" ? "active" : ""}`}
-                style={buttonStyle}
+                style={{
+                  ...linkStyle,
+                  color: activeNav === "services" ? "grey" : "#333",
+                  fontWeight: activeNav === "services" ? "bold" : "normal",
+                  textDecoration:
+                    activeNav === "services" ? "underline" : "none",
+                }}
                 onClick={handleServicesClick}
               >
                 Services
@@ -149,6 +170,36 @@ export function Header({ activeNav }: HeaderProps) {
                 </ul>
               )}
             </li>
+
+            <li className="nav-item">
+              <button
+                className="btn book-btn"
+                type="button"
+                onClick={handleBookBtn}
+                style={{
+                  ...linkStyle,
+                  color: activeNav === "book" ? "grey" : "#333",
+                  fontWeight: activeNav === "book" ? "bold" : "normal",
+                  textDecoration: activeNav === "book" ? "underline" : "none",
+                }}
+              >
+                Book
+              </button>
+            </li>
+            <li className="nav-item">
+              <button
+                className="btn"
+                style={{
+                  ...linkStyle,
+                  color: activeNav === "about" ? "grey" : "#333",
+                  fontWeight: activeNav === "about" ? "bold" : "normal",
+                  textDecoration: activeNav === "about" ? "underline" : "none",
+                }}
+                onClick={handleAboutClick}
+              >
+                About
+              </button>
+            </li>
             <li className="nav-item">
               <button
                 className="btn"
@@ -165,25 +216,6 @@ export function Header({ activeNav }: HeaderProps) {
                 onClick={handleRegisterBtn}
               >
                 Register
-              </button>
-            </li>
-            <li className="nav-item">
-              <button
-                className="btn book-btn"
-                type="button"
-                onClick={handleBookBtn}
-                style={buttonStyle}
-              >
-                Book
-              </button>
-            </li>
-            <li className="nav-item">
-              <button
-                className="btn"
-                style={buttonStyle}
-                onClick={handleAboutClick}
-              >
-                About
               </button>
             </li>
           </ul>
