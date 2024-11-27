@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./header.css";
+import { useUserContext } from "../../context/AuthContext";
 
 export interface HeaderProps {
   activeNav: string;
@@ -10,6 +11,7 @@ export interface HeaderProps {
 export function Header({ activeNav }: HeaderProps) {
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const isAuthenticated = useUserContext();
 
   function handleSignInBtn(e: React.MouseEvent) {
     e.preventDefault();
@@ -203,7 +205,10 @@ export function Header({ activeNav }: HeaderProps) {
             <li className="nav-item">
               <button
                 className="btn"
-                style={buttonStyle}
+                style={{
+                  ...buttonStyle,
+                  display: isAuthenticated ? "none" : "inline-block",
+                }}
                 onClick={handleSignInBtn}
               >
                 Sign In
@@ -212,7 +217,22 @@ export function Header({ activeNav }: HeaderProps) {
             <li className="nav-item">
               <button
                 className="btn"
-                style={buttonStyle}
+                style={{
+                  ...buttonStyle,
+                  display: isAuthenticated ? "inline-block" : "none",
+                }}
+                onClick={handleSignInBtn}
+              >
+                Sing Out
+              </button>
+            </li>
+            <li className="nav-item">
+              <button
+                className="btn"
+                style={{
+                  ...buttonStyle,
+                  display: isAuthenticated ? "none" : "inline-block",
+                }}
                 onClick={handleRegisterBtn}
               >
                 Register
