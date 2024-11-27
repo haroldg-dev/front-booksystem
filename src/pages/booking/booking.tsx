@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom"; 
 import "./booking.css";
 import { Header } from "../../components/Header/header";
 
@@ -9,7 +9,7 @@ function Booking() {
     date: "",
     service: "",
   });
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate(); 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({
@@ -27,7 +27,7 @@ function Booking() {
       return;
     }
 
-    // Navigate to the Checkout page, passing the form data
+    
     navigate("/checkout", { state: formData });
   };
 

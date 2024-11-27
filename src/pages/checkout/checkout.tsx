@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./checkout.css";
 
 const Checkout = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const bookingData = location.state || {};
   const [showModal, setShowModal] = useState(false);
 
@@ -22,11 +23,21 @@ const Checkout = () => {
     setShowModal(true);
   };
 
+  const handleGoBack = () => {
+    navigate("/book");
+  };
+
   return (
     <div className="checkoutBody">
       <div className="checkout-container">
+        <button className="back-button" onClick={handleGoBack}>
+          &larr; Back to Booking
+        </button>
+
         <h1>Checkout</h1>
-        <p className="checkout-intro">Review your selections and complete your booking.</p>
+        <p className="checkout-intro">
+          {bookingData.name ? `Hello, ${bookingData.name}!` : "Review your selections and complete your booking."}
+        </p>
 
         <div className="checkout-section">
           <h2>Your Booking</h2>
