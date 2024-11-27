@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "./booking.css";
 import { Header } from "../../components/Header/header";
 
@@ -9,9 +9,11 @@ function Booking() {
     date: "",
     service: "",
   });
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
@@ -22,12 +24,15 @@ function Booking() {
     e.preventDefault();
 
     // Validate form fields
-    if (!formData.name || !formData.date || formData.service === "Choose a Service") {
+    if (
+      !formData.name ||
+      !formData.date ||
+      formData.service === "Choose a Service"
+    ) {
       alert("Please fill in all fields");
       return;
     }
 
-    
     navigate("/checkout", { state: formData });
   };
 
@@ -36,10 +41,14 @@ function Booking() {
       <Header activeNav="book" />
       <section id="booking_hero" className="d-flex justify-content-center">
         <div className="container d-flex flex-column align-items-center p-5">
-          <h1 className="text-center text-white mb-4">Book Your Spa Experience</h1>
+          <h1 className="text-center text-white mb-4">
+            Book Your Spa Experience
+          </h1>
           <form className="booking-form" onSubmit={handleSubmit}>
             <div className="form-group mb-3">
-              <label htmlFor="name" className="form-label text-white">Name</label>
+              <label htmlFor="name" className="form-label text-white">
+                Name
+              </label>
               <input
                 type="text"
                 id="name"
@@ -50,7 +59,9 @@ function Booking() {
               />
             </div>
             <div className="form-group mb-3">
-              <label htmlFor="date" className="form-label text-white">Booking Date</label>
+              <label htmlFor="date" className="form-label text-white">
+                Booking Date
+              </label>
               <input
                 type="date"
                 id="date"
@@ -60,7 +71,9 @@ function Booking() {
               />
             </div>
             <div className="form-group mb-3">
-              <label htmlFor="service" className="form-label text-white">Service</label>
+              <label htmlFor="service" className="form-label text-white">
+                Service
+              </label>
               <select
                 id="service"
                 className="form-select"
@@ -75,7 +88,9 @@ function Booking() {
                 <option>Thai Massage</option>
               </select>
             </div>
-            <button type="submit" className="btn btn-light w-100 mt-3">Submit</button>
+            <button type="submit" className="btn btn-light w-100 mt-3">
+              Book Now!
+            </button>
           </form>
         </div>
       </section>

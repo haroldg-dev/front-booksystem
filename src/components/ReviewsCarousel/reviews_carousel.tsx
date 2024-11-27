@@ -49,7 +49,14 @@ export function ReviewCarousel() {
 
   return (
     <>
-      <Carousel interval={3000} pause="hover" controls={true} indicators={true} className="my-5">
+      <Carousel
+        interval={3000}
+        pause="hover"
+        controls={true}
+        indicators={true}
+        className="my-5"
+        data-bs-theme="dark"
+      >
         {reviews.map((review, index) => (
           <Carousel.Item key={index}>
             <ReviewCard

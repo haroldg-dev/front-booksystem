@@ -20,7 +20,7 @@ export function ServicesCard({ imgSide }: ServicesCardProps) {
     }
   });
   return (
-    <div className="container">
+    <div className="container mb-2" style={{ maxWidth: "900px" }}>
       <div className="row py-3 px-5 border">
         <div
           className={`img_wrapper col-6 d-flex justify-content-center ${

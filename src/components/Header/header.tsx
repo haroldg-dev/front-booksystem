@@ -67,7 +67,7 @@ export function Header({ activeNav }: HeaderProps) {
     backgroundColor: "#ffffff",
     boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
     padding: "10px 0",
-    marginBottom: "20px",
+    // marginBottom: "20px",
   };
 
   const handleMouseEnter = () => {

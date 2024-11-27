@@ -16,7 +16,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { UserContext } from "./context/AuthContext";
 
 function App() {
-  //TODO: is this setIsAutheticated already working?
+  //TODO: is this setIsAuthenticated already working?
+  //need to change the isAuthenticated state after clicking sing out btn
   const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   return (

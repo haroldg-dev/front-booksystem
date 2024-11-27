@@ -1,6 +1,6 @@
 import { DateRange } from "@mui/icons-material";
-import { Card } from "react-bootstrap";
 import { Rating } from "../Rating/rating";
+import { Carousel } from "react-bootstrap";
 
 export interface Review {
   stars: number;
@@ -11,16 +11,21 @@ export interface Review {
 
 export function ReviewCard({ stars, content, author, date }: Review) {
   return (
-    <Card className="m-auto" style={{ maxWidth: "500px" }}>
-      <Card.Header>
+    <div
+      className="d-flex justify-content-center align-items-center m-auto"
+      style={{ minHeight: "200px", maxWidth: "500px" }}
+    >
+      <div className="text-center">
+        <blockquote className="blockquote">
+          <p className="mb-4">"{content}"</p>
+          <footer className="blockquote-footer">
+            {author} - {date}
+          </footer>
+        </blockquote>
+      </div>
+      <Carousel.Caption className="mt-3">
         <Rating stars={stars} />
-      </Card.Header>
-      <Card.Body as="h4" className="text-center">
-        <Card.Title>{content}</Card.Title>
-        <Card.Text>
-          {author} - {date}
-        </Card.Text>
-      </Card.Body>
-    </Card>
+      </Carousel.Caption>
+    </div>
   );
 }

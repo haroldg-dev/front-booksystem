@@ -32,7 +32,6 @@ function Home() {
                 <h4 className="text-center text-light">Vancouver</h4>
               </div>
               <div className="button_wrapper d-flex justify-content-center gap-4">
-                {/* Services Button */}
                 <button
                   type="button"
                   className="btn btn-light"
@@ -41,7 +40,6 @@ function Home() {
                   Services
                 </button>
 
-                {/* First Book Now Button */}
                 <button
                   type="button"
                   className="btn btn-dark"
@@ -55,6 +53,7 @@ function Home() {
         </div>
       </section>
       <section id="services_section">
+        <h3 className="text-center m-5">Special Offers</h3>
         <ServicesCard imgSide="left" />
         <ServicesCard imgSide="right" />
       </section>

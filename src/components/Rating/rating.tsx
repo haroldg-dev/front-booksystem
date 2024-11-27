@@ -1,8 +1,8 @@
 interface RatingProps {
-  stars: number; 
+  stars: number;
 }
 
-export function Rating ({ stars }: RatingProps) {
+export function Rating({ stars }: RatingProps) {
   const filledStars = Math.min(Math.max(stars, 0), 5); // Clamp stars between 0 and 5
   const emptyStars = 5 - filledStars;
 
@@ -16,5 +16,4 @@ export function Rating ({ stars }: RatingProps) {
       ))}
     </div>
   );
-};
-
+}
