@@ -13,21 +13,24 @@ const Services = () => {
 
   return (
     <>
-    <Header activeNav="home" />
-    <div className="servicesBody">
-      <div className="services-container">
-        <h1>Our Services</h1>
-        <div className="services-list">
-          {servicesList.map((service, index) => (
-            <div className="service-card" key={index}>
-              <img src={service.image} alt={service.title} className="service-image" />
-              <h2>{service.title}</h2>
-              <p>{service.description}</p>
-            </div>
-          ))}
+      <Header activeNav="services" />
+      <div className="servicesBody">
+        <div className="header-title">
+          <h1>Lagoon Paradise Spa</h1><br /><h2>Vancouver</h2>
+        </div>
+        <div className="services-container">
+          <h1>Our Services</h1>
+          <div className="services-list">
+            {servicesList.map((service, index) => (
+              <div className="service-card" key={index}>
+                <img src={service.image} alt={service.title} className="service-image" />
+                <h2>{service.title}</h2>
+                <p>{service.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 };

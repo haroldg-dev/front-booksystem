@@ -8,15 +8,18 @@ import { Subscribe } from "../../components/Subscribe/subscribe";
 function Home() {
   const navigate = useNavigate();
 
+  // Navigate to services page
   function handleServicesBtn(e: React.MouseEvent) {
     e.preventDefault();
     navigate("/services");
   }
 
+  // Navigate to booking page
   function handleBookBtn(e: React.MouseEvent) {
     e.preventDefault();
     navigate("/book");
   }
+
   return (
     <>
       <Header activeNav="home" />
@@ -24,11 +27,12 @@ function Home() {
         <div className="container d-flex justify-content-center">
           <div className="row">
             <div className="z-1 position-relative d-flex flex-column justify-content-center p-5">
-              <div className="heading_wrapper mb-5 ">
+              <div className="heading_wrapper mb-5">
                 <h1 className="text-white text-center">Paradise Lagoon Spa</h1>
                 <h4 className="text-center text-light">Vancouver</h4>
               </div>
               <div className="button_wrapper d-flex justify-content-center gap-4">
+                {/* Services Button */}
                 <button
                   type="button"
                   className="btn btn-light"
@@ -36,12 +40,14 @@ function Home() {
                 >
                   Services
                 </button>
+
+                {/* First Book Now Button */}
                 <button
                   type="button"
                   className="btn btn-dark"
                   onClick={handleBookBtn}
                 >
-                  Book
+                  Book Now
                 </button>
               </div>
             </div>
@@ -58,6 +64,18 @@ function Home() {
       <section id="subscribe">
         <Subscribe />
       </section>
+      <div className="container d-flex justify-content-center">
+        <div className="row">
+          {/* Second Book Now Button */}
+          <button
+            type="button"
+            className="btn btn-dark"
+            onClick={handleBookBtn}
+          >
+            Book Now
+          </button>
+        </div>
+      </div>
     </>
   );
 }
