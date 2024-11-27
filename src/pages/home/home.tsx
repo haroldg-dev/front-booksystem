@@ -61,21 +61,9 @@ function Home() {
       <section id="reviews_carousel">
         <ReviewCarousel />
       </section>
-      <section id="subscribe">
+      <section id="subscribe" className="mb-5">
         <Subscribe />
       </section>
-      <div className="container d-flex justify-content-center">
-        <div className="row">
-          {/* Second Book Now Button */}
-          <button
-            type="button"
-            className="btn btn-dark"
-            onClick={handleBookBtn}
-          >
-            Book Now
-          </button>
-        </div>
-      </div>
     </>
   );
 }

@@ -9,7 +9,10 @@ export function Subscribe() {
       </div>
 
       <Form>
-        <Form.Group className="mb-3 d-flex gap-4" controlId="formBasicEmail">
+        <Form.Group
+          className="mb-3 d-flex justify-content-center gap-4"
+          controlId="formBasicEmail"
+        >
           <div className="">
             <Form.Control type="email" placeholder="you@example.com" />
             <Form.Text className="text-muted">

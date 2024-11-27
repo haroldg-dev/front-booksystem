@@ -67,7 +67,11 @@ export function Header({ activeNav }: HeaderProps) {
   };
 
   return (
-    <nav className="navbar navbar-expand-sm" style={navbarStyle} data-bs-theme="light">
+    <nav
+      className="navbar navbar-expand-sm"
+      style={navbarStyle}
+      data-bs-theme="light"
+    >
       <div className="container-fluid">
         <button
           className="navbar-toggler"
@@ -93,8 +97,8 @@ export function Header({ activeNav }: HeaderProps) {
             </li>
             <li
               className="nav-item dropdown"
-              onMouseEnter={handleMouseEnter}  // Only Services button triggers dropdown
-              onMouseLeave={handleMouseLeave}  // Only Services button triggers dropdown
+              onMouseEnter={handleMouseEnter} // Only Services button triggers dropdown
+              onMouseLeave={handleMouseLeave} // Only Services button triggers dropdown
             >
               <button
                 className={`btn ${activeNav === "services" ? "active" : ""}`}
@@ -106,22 +110,34 @@ export function Header({ activeNav }: HeaderProps) {
               {isDropdownOpen && (
                 <ul className="dropdown-menu" style={{ display: "block" }}>
                   <li>
-                    <Link className="dropdown-item" to="/services/swedish-massage">
+                    <Link
+                      className="dropdown-item"
+                      to="/services/swedish-massage"
+                    >
                       Swedish Massage
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/services/deep-tissue-massage">
+                    <Link
+                      className="dropdown-item"
+                      to="/services/deep-tissue-massage"
+                    >
                       Deep Tissue Massage
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/services/hot-stone-massage">
+                    <Link
+                      className="dropdown-item"
+                      to="/services/hot-stone-massage"
+                    >
                       Hot Stone Massage
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/services/aromatherapy-massage">
+                    <Link
+                      className="dropdown-item"
+                      to="/services/aromatherapy-massage"
+                    >
                       Aromatherapy Massage
                     </Link>
                   </li>
