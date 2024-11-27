@@ -5,10 +5,22 @@
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background: linear-gradient(135deg, #f5f5f5, #d7eae6);
+  background: linear-gradient(to bottom, #fff, #0d7d96);
   min-height: 100vh;
+}
+
+.header-title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.header-title h1 {
+  font-size: 2.5rem;
+  color: black;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .services-container {

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export interface HeaderProps {
   activeNav: string;
@@ -7,6 +8,7 @@ export interface HeaderProps {
 
 export function Header({ activeNav }: HeaderProps) {
   const navigate = useNavigate();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   function handleSignInBtn(e: React.MouseEvent) {
     e.preventDefault();
@@ -23,7 +25,26 @@ export function Header({ activeNav }: HeaderProps) {
     navigate("/book");
   }
 
-  // Inline CSS styles for the header and button
+  function handleServicesClick() {
+    // Navigate to the services page
+    navigate("/services");
+  }
+
+  function handleAboutClick() {
+    // Navigate to the about page
+    navigate("/about");
+  }
+
+  const buttonStyle: React.CSSProperties = {
+    backgroundColor: "#333",
+    color: "#fff",
+    padding: "8px 20px",
+    borderRadius: "4px",
+    transition: "background-color 0.3s ease",
+    border: "none",
+    cursor: "pointer",
+  };
+
   const navbarStyle: React.CSSProperties = {
     position: "sticky",
     top: 0,
@@ -37,17 +58,13 @@ export function Header({ activeNav }: HeaderProps) {
     marginBottom: "20px",
   };
 
-  const buttonStyle: React.CSSProperties = {
-    backgroundColor: "#333",
-    color: "#fff",
-    padding: "8px 20px",
-    borderRadius: "4px",
-    transition: "background-color 0.3s ease",
-    border: "none",
-    cursor: "pointer",
+  const handleMouseEnter = () => {
+    setIsDropdownOpen(true);
   };
 
-  
+  const handleMouseLeave = () => {
+    setIsDropdownOpen(false);
+  };
 
   return (
     <nav className="navbar navbar-expand-sm" style={navbarStyle} data-bs-theme="light">
@@ -66,34 +83,60 @@ export function Header({ activeNav }: HeaderProps) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto me-5 align-items-center gap-2 mb-2 mb-lg-0">
             <li className="nav-item">
-              <a
-                className={`nav-link ${activeNav === "home" ? "active" : ""}`}
-                aria-current="page"
-                href="/"
+              <button
+                className={`btn ${activeNav === "home" ? "active" : ""}`}
+                style={buttonStyle}
+                onClick={() => navigate("/")}
               >
                 Home
-              </a>
+              </button>
             </li>
-            <li className="nav-item">
-              <a
-                className={`nav-link ${activeNav === "services" ? "active" : ""}`}
-                href="/services"
+            <li
+              className="nav-item dropdown"
+              onMouseEnter={handleMouseEnter}  // Only Services button triggers dropdown
+              onMouseLeave={handleMouseLeave}  // Only Services button triggers dropdown
+            >
+              <button
+                className={`btn ${activeNav === "services" ? "active" : ""}`}
+                style={buttonStyle}
+                onClick={handleServicesClick}
               >
                 Services
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                className={`nav-link ${activeNav === "about" ? "active" : ""}`}
-                href="/about"
-              >
-                About
-              </a>
+              </button>
+              {isDropdownOpen && (
+                <ul className="dropdown-menu" style={{ display: "block" }}>
+                  <li>
+                    <Link className="dropdown-item" to="/services/swedish-massage">
+                      Swedish Massage
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/services/deep-tissue-massage">
+                      Deep Tissue Massage
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/services/hot-stone-massage">
+                      Hot Stone Massage
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/services/aromatherapy-massage">
+                      Aromatherapy Massage
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="dropdown-item" to="/services/thai-massage">
+                      Thai Massage
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </li>
             <li className="nav-item">
               <button
-                className="btn btn-outline-secondary"
-                type="button"
+                className="btn"
+                style={buttonStyle}
                 onClick={handleSignInBtn}
               >
                 Sign In
@@ -101,8 +144,8 @@ export function Header({ activeNav }: HeaderProps) {
             </li>
             <li className="nav-item">
               <button
-                className="btn btn-dark"
-                type="button"
+                className="btn"
+                style={buttonStyle}
                 onClick={handleRegisterBtn}
               >
                 Register
@@ -114,10 +157,17 @@ export function Header({ activeNav }: HeaderProps) {
                 type="button"
                 onClick={handleBookBtn}
                 style={buttonStyle}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#0d7d96")}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#333")}
               >
                 Book
+              </button>
+            </li>
+            <li className="nav-item">
+              <button
+                className="btn"
+                style={buttonStyle}
+                onClick={handleAboutClick}
+              >
+                About
               </button>
             </li>
           </ul>

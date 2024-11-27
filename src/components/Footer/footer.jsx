@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="footer-container">
       <div className="footer-content">
-        <p>© 2024 Your Spa Name. All Rights Reserved.</p>
+        <p>© 2024 Paradise Lagoon Spa. All Rights Reserved.</p>
         <div className="footer-links">
           <a href="#privacy">Privacy Policy</a>
           <a href="#terms">Terms of Service</a>
