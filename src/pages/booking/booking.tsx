@@ -1,34 +1,78 @@
-import React from "react"; 
-import "./booking.css"; 
-import { Header } from "../../components/Header/header"; 
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import "./booking.css";
+import { Header } from "../../components/Header/header";
 
 function Booking() {
+  const [formData, setFormData] = useState({
+    name: "",
+    date: "",
+    service: "",
+  });
+  const navigate = useNavigate(); // Initialize navigate
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Validate form fields
+    if (!formData.name || !formData.date || formData.service === "Choose a Service") {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    // Navigate to the Checkout page, passing the form data
+    navigate("/checkout", { state: formData });
+  };
+
   return (
     <>
       <Header activeNav="book" />
       <section id="booking_hero" className="d-flex justify-content-center">
         <div className="container d-flex flex-column align-items-center p-5">
           <h1 className="text-center text-white mb-4">Book Your Spa Experience</h1>
-          <form className="booking-form">
+          <form className="booking-form" onSubmit={handleSubmit}>
             <div className="form-group mb-3">
               <label htmlFor="name" className="form-label text-white">Name</label>
-              <input type="text" id="name" className="form-control" placeholder="Your Name" />
-            </div>
-            <div className="form-group mb-3">
-              <label htmlFor="email" className="form-label text-white">Email</label>
-              <input type="email" id="email" className="form-control" placeholder="Your Email" />
+              <input
+                type="text"
+                id="name"
+                className="form-control"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={handleChange}
+              />
             </div>
             <div className="form-group mb-3">
               <label htmlFor="date" className="form-label text-white">Booking Date</label>
-              <input type="date" id="date" className="form-control" />
+              <input
+                type="date"
+                id="date"
+                className="form-control"
+                value={formData.date}
+                onChange={handleChange}
+              />
             </div>
             <div className="form-group mb-3">
               <label htmlFor="service" className="form-label text-white">Service</label>
-              <select id="service" className="form-select">
+              <select
+                id="service"
+                className="form-select"
+                value={formData.service}
+                onChange={handleChange}
+              >
                 <option>Choose a Service</option>
-                <option>Massage Therapy</option>
-                <option>Facial Treatments</option>
-                <option>Body Scrubs</option>
+                <option>Swedish Massage</option>
+                <option>Deep Tissue Massage</option>
+                <option>Hot Stone Massage</option>
+                <option>Aromatherapy Massage</option>
+                <option>Thai Massage</option>
               </select>
             </div>
             <button type="submit" className="btn btn-light w-100 mt-3">Submit</button>
@@ -39,5 +83,4 @@ function Booking() {
   );
 }
 
-// Varsayılan export ekledik
 export default Booking;
