@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   height: 100%;
   margin: 0;
 }
@@ -51,7 +52,7 @@ body, html {
 }
 
 .footer-links a:hover {
-  color: #ff4081;
+  color: #333;
 }
 
 .footer-social {
@@ -67,5 +68,5 @@ body, html {
 }
 
 .footer-social a:hover {
-  color: #ff4081;
+  color: #333;
 }
