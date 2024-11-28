@@ -18,7 +18,7 @@ import { UserContext } from "./context/AuthContext";
 function App() {
   //TODO: is this setIsAuthenticated already working?
   //need to change the isAuthenticated state after clicking sing out btn
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     <div id="root">
@@ -26,17 +26,27 @@ function App() {
         <BrowserRouter>
           <div className="main-content">
             <Routes>
+              <Route path="/" element={<Home />} />
               <Route
                 path="/login"
                 element={
                   <Login onLoginSuccess={() => setIsAuthenticated(true)} />
                 }
               />
-              <Route path="/signup" element={<SignUp />} />
               <Route
+                path="/signup"
+                element={
+                  <SignUp
+                    onCreatedAccount={(isCreated) =>
+                      setIsAuthenticated(isCreated)
+                    }
+                  />
+                }
+              />
+              {/* <Route
                 path="/home"
                 element={isAuthenticated ? <Home /> : <Navigate to="/login" />}
-              />
+              /> */}
               <Route path="/services" element={<Services />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route
@@ -46,7 +56,6 @@ function App() {
                 }
               />
               <Route path="/about" element={<About />} />
-              <Route path="/" element={<Home />} />
             </Routes>
           </div>
           <Footer />

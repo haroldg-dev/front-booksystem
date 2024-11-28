@@ -6,6 +6,7 @@ import { useUserContext } from "../../context/AuthContext";
 
 export interface HeaderProps {
   activeNav: string;
+  // onSignOut: (isAuthenticated: boolean) => void;
 }
 
 export function Header({ activeNav }: HeaderProps) {
@@ -221,7 +222,7 @@ export function Header({ activeNav }: HeaderProps) {
                   ...buttonStyle,
                   display: isAuthenticated ? "inline-block" : "none",
                 }}
-                onClick={handleSignInBtn}
+                onClick={() => {}}
               >
                 Sing Out
               </button>

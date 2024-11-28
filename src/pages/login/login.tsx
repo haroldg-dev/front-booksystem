@@ -5,7 +5,7 @@ import { Header } from "../../components/Header/header";
 
 
 interface LoginProps {
-  onLoginSuccess: () => void;
+  onLoginSuccess: (isAuthenticated: boolean) => void;
 }
 
 function Login({ onLoginSuccess }: LoginProps) {
@@ -17,7 +17,7 @@ function Login({ onLoginSuccess }: LoginProps) {
     e.preventDefault();
     // Mock credentials
     if (username === "admin" && password === "123456") {
-      onLoginSuccess();
+      onLoginSuccess(true);
       navigate("/home");
     } else {
       alert("Invalid credentials!");
