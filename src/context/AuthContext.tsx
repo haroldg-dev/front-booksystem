@@ -1,18 +1,12 @@
-import { createContext, useContext } from "react";
-
+import { createContext } from "react";
 
 interface User {
   authenticated: boolean;
+  setAuthenticated: (isAuth: boolean) => void;
 }
 
-export const UserContext = createContext<User | boolean>(false);
-
-export function useUserContext() {
-  const user = useContext(UserContext);
-
-  if (user === undefined) {
-    throw new Error("User context is undefined"); 
-  }
-
-  return user;
-}
+// Define the context with a default value for User type
+export const AuthContext = createContext<User>({
+  authenticated: false,
+  setAuthenticated: (auth: boolean) => {},
+});

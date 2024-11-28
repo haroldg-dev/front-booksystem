@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./header.css";
-import { useUserContext } from "../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 export interface HeaderProps {
   activeNav: string;
@@ -11,7 +11,10 @@ export interface HeaderProps {
 export function Header({ activeNav }: HeaderProps) {
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const isAuthenticated = useUserContext();
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const authenticated = AuthContext;
+  const { setAuthenticated, authenticated } = useContext(AuthContext);
+  // const handleLogin = () => setAuthenticated(true);
 
   function handleSignInBtn(e: React.MouseEvent) {
     e.preventDefault();
@@ -111,8 +114,8 @@ export function Header({ activeNav }: HeaderProps) {
             </li>
             <li
               className="nav-item dropdown"
-              onMouseEnter={handleMouseEnter} 
-              onMouseLeave={handleMouseLeave} 
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               <button
                 className={`btn ${activeNav === "services" ? "active" : ""}`}
@@ -204,7 +207,7 @@ export function Header({ activeNav }: HeaderProps) {
                 className="btn"
                 style={{
                   ...buttonStyle,
-                  display: isAuthenticated ? "none" : "inline-block",
+                  display: authenticated ? "none" : "inline-block",
                 }}
                 onClick={handleSignInBtn}
               >
@@ -216,9 +219,11 @@ export function Header({ activeNav }: HeaderProps) {
                 className="btn"
                 style={{
                   ...buttonStyle,
-                  display: isAuthenticated ? "inline-block" : "none",
+                  display: authenticated ? "inline-block" : "none",
                 }}
-                onClick={() => {}}
+                onClick={() => {
+                  setAuthenticated(false);
+                }}
               >
                 Sing Out
               </button>
@@ -228,7 +233,7 @@ export function Header({ activeNav }: HeaderProps) {
                 className="btn"
                 style={{
                   ...buttonStyle,
-                  display: isAuthenticated ? "none" : "inline-block",
+                  display: authenticated ? "none" : "inline-block",
                 }}
                 onClick={handleRegisterBtn}
               >
