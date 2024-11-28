@@ -10,7 +10,6 @@
   background: linear-gradient(135deg, #f5f5f5, #d7eae6);
   min-height: 100vh;
 }
-  /* Back to Booking Button */
   .back-button {
     position: absolute;
     top: 20px;
@@ -28,7 +27,6 @@
     text-decoration: none;
   }
   
-  /* Adjust modal styles if needed */
   .modal-overlay {
     position: fixed;
     top: 0;

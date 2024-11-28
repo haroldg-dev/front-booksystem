@@ -8,13 +8,11 @@ import { Subscribe } from "../../components/Subscribe/subscribe";
 function Home() {
   const navigate = useNavigate();
 
-  // Navigate to services page
   function handleServicesBtn(e: React.MouseEvent) {
     e.preventDefault();
     navigate("/services");
   }
 
-  // Navigate to booking page
   function handleBookBtn(e: React.MouseEvent) {
     e.preventDefault();
     navigate("/book");

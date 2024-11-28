@@ -6,7 +6,6 @@ import { useUserContext } from "../../context/AuthContext";
 
 export interface HeaderProps {
   activeNav: string;
-  // onSignOut: (isAuthenticated: boolean) => void;
 }
 
 export function Header({ activeNav }: HeaderProps) {
@@ -30,12 +29,10 @@ export function Header({ activeNav }: HeaderProps) {
   }
 
   function handleServicesClick() {
-    // Navigate to the services page
     navigate("/services");
   }
 
   function handleAboutClick() {
-    // Navigate to the about page
     navigate("/about");
   }
 
@@ -68,7 +65,6 @@ export function Header({ activeNav }: HeaderProps) {
     backgroundColor: "#ffffff",
     boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
     padding: "10px 0",
-    // marginBottom: "20px",
   };
 
   const handleMouseEnter = () => {
@@ -115,8 +111,8 @@ export function Header({ activeNav }: HeaderProps) {
             </li>
             <li
               className="nav-item dropdown"
-              onMouseEnter={handleMouseEnter} // Only Services button triggers dropdown
-              onMouseLeave={handleMouseLeave} // Only Services button triggers dropdown
+              onMouseEnter={handleMouseEnter} 
+              onMouseLeave={handleMouseLeave} 
             >
               <button
                 className={`btn ${activeNav === "services" ? "active" : ""}`}
