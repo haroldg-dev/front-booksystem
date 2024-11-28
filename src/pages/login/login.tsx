@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./login.css"; // Ensure the CSS file is properly linked
+import "./login.css"; 
 import { Header } from "../../components/Header/header";
 
 
@@ -15,7 +15,6 @@ function Login({ onLoginSuccess }: LoginProps) {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // Mock credentials
     if (username === "admin" && password === "123456") {
       onLoginSuccess(true);
       navigate("/home");

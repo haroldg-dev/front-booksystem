@@ -8,7 +8,6 @@ const Checkout = () => {
   const bookingData = location.state || {};
   const [showModal, setShowModal] = useState(false);
 
-  // Map service to its description and price
   const servicesInfo: { [key: string]: { description: string; price: number } } = {
     "Swedish Massage": { description: "A relaxing full-body massage to ease tension.", price: 120 },
     "Deep Tissue Massage": { description: "Targets deeper layers of muscles to relieve chronic pain.", price: 150 },

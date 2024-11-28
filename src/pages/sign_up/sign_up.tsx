@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./sign_up.css"; // Ensure the CSS file is properly linked
+import "./sign_up.css"; 
 import { api } from "../../services/api";
 import Alert from "@mui/material/Alert";
 import { Header } from "../../components/Header/header";
 
-//TO DO: Create User in the backend
 
 interface Props {
   onCreatedAccount: (isCreated: boolean) => void;
@@ -31,7 +30,7 @@ function SignUp({ onCreatedAccount }: Props) {
       return alert("Password must have at least 6 characters.");
     }
 
-    //TODO: Confirm API is working - it seems to be connect but not responding
+    
     api
       .post("/person", { firstName, lastName, email, password, phone })
       .then((response) => {
