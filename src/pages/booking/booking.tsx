@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./booking.css";
 import { Header } from "../../components/Header/header";
+import { api } from "../../services/api";
 
 function Booking() {
+  const [user, setUser] = useState({});
   const [formData, setFormData] = useState({
     name: "",
     date: "",
@@ -35,6 +37,16 @@ function Booking() {
 
     navigate("/checkout", { state: formData });
   };
+
+  useEffect(() => {
+    async function fetchUser() {
+      const response = await api.get(`/person/`);
+      setUser(response.data);
+      setFormData({ ...formData, name: response.data });
+    }
+
+    fetchUser();
+  }, []);
 
   return (
     <>

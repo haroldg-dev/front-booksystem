@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import { Header } from "../../components/Header/header";
 import { api } from "../../services/api";
+import { AuthContext } from "../../context/AuthContext";
 
 interface LoginProps {
   onLoginSuccess: (isAuthenticated: boolean) => void;
@@ -12,6 +13,7 @@ function Login({ onLoginSuccess }: LoginProps) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { setAuthenticated } = useContext(AuthContext);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,7 +21,8 @@ function Login({ onLoginSuccess }: LoginProps) {
       console.log(response);
       if (response.data.status == 200) {
         alert("Login successful!");
-        onLoginSuccess(true);
+        setAuthenticated(true);
+        console.log(response);
         navigate("/");
       } else {
         alert("Invalid credentials!");
