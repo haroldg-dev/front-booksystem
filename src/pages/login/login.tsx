@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./login.css"; 
+import "./login.css";
 import { Header } from "../../components/Header/header";
+import { api } from "../../services/api";
 
 interface LoginProps {
   onLoginSuccess: (isAuthenticated: boolean) => void;
@@ -14,12 +15,16 @@ function Login({ onLoginSuccess }: LoginProps) {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === "admin" && password === "123456") {
-      onLoginSuccess(true);
-      navigate("/");
-    } else {
-      alert("Invalid credentials!");
-    }
+    api.post("/auth/login", { email: username, password }).then((response) => {
+      console.log(response);
+      if (response.data.status == 200) {
+        alert("Login successful!");
+        onLoginSuccess(true);
+        navigate("/");
+      } else {
+        alert("Invalid credentials!");
+      }
+    });
   };
 
   return (
