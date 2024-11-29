@@ -230,7 +230,7 @@ export function Header({ activeNav }: HeaderProps) {
                   setAuthenticated(false);
                 }}
               >
-                Sing Out
+                Sign Out
               </button>
             </li>
             <li className="nav-item">
