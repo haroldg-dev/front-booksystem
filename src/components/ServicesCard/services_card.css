@@ -1,0 +1,5 @@
+.img_wrapper img {
+  /* max-width: 500px; */
+  max-height: 300px;
+  object-fit: cover;
+}
