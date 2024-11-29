@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom"; // Added useNavigate
 import "./checkout.css";
 import { api } from "../../services/api";
 
 const Checkout = () => {
   const location = useLocation();
-  const bookingData = location.state || {}; // Booking details passed from previous page
-  const [isConfirmed, setIsConfirmed] = useState(false); // Tracks booking confirmation
+  const navigate = useNavigate(); // Added navigate
+  const bookingData = location.state || {};
+  const [isConfirmed, setIsConfirmed] = useState(false);
 
-  // Map service to its description and price
   const servicesInfo: {
     [key: string]: { description: string; price: number };
   } = {
@@ -29,8 +29,7 @@ const Checkout = () => {
       price: 130,
     },
     "Thai Massage": {
-      description:
-        "Focuses on stretching and deep pressure points for healing.",
+      description: "Focuses on stretching and deep pressure points for healing.",
       price: 135,
     },
   };
@@ -42,24 +41,19 @@ const Checkout = () => {
 
   const handleCompleteBooking = async () => {
     try {
-      // Format the booking data
       const bookingPayload = {
         customerEmail: bookingData.email,
         customerName: bookingData.name,
         bookingDate: bookingData.date,
-        status: "confirmed", // Default status for new bookings
+        status: "confirmed",
         service: bookingData.service,
         serviceDescription: selectedService.description,
       };
 
-      // Send booking data to API
       await api.post("/booking", bookingPayload);
-
-      // Update UI to show confirmation
       setIsConfirmed(true);
     } catch (error) {
       console.error("Failed to create booking:", error);
-      // You might want to add error handling UI here
       alert("Failed to complete booking. Please try again.");
     }
   };
@@ -70,7 +64,6 @@ const Checkout = () => {
         <h1>Checkout</h1>
 
         {isConfirmed ? (
-          // Show confirmation details after completing the booking
           <div className="confirmation-message">
             <h2>Booking Confirmed!</h2>
             <p>
@@ -86,9 +79,15 @@ const Checkout = () => {
               <strong>Total:</strong> ${selectedService.price * 1.125}
             </p>
             <p className="thank-you">Thank you for booking with us!</p>
+            {/* Back Button */}
+            <button
+              className="return-button"
+              onClick={() => navigate(-1)} // Navigate back to the previous page
+            >
+              Back to Booking
+            </button>
           </div>
         ) : (
-          // Original checkout form
           <>
             <p className="checkout-intro">
               Review your selections and complete your booking.
