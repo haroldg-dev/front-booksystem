@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./checkout.css";
+import { api } from "../../services/api";
 
 const Checkout = () => {
   const location = useLocation();
@@ -8,18 +9,59 @@ const Checkout = () => {
   const [isConfirmed, setIsConfirmed] = useState(false); // Tracks booking confirmation
 
   // Map service to its description and price
-  const servicesInfo: { [key: string]: { description: string; price: number } } = {
-    "Swedish Massage": { description: "A relaxing full-body massage to ease tension.", price: 120 },
-    "Deep Tissue Massage": { description: "Targets deeper layers of muscles to relieve chronic pain.", price: 150 },
-    "Hot Stone Massage": { description: "Warm stones are used to relax and soothe muscles.", price: 140 },
-    "Aromatherapy Massage": { description: "Combines essential oils with gentle massage techniques.", price: 130 },
-    "Thai Massage": { description: "Focuses on stretching and deep pressure points for healing.", price: 135 },
+  const servicesInfo: {
+    [key: string]: { description: string; price: number };
+  } = {
+    "Swedish Massage": {
+      description: "A relaxing full-body massage to ease tension.",
+      price: 120,
+    },
+    "Deep Tissue Massage": {
+      description: "Targets deeper layers of muscles to relieve chronic pain.",
+      price: 150,
+    },
+    "Hot Stone Massage": {
+      description: "Warm stones are used to relax and soothe muscles.",
+      price: 140,
+    },
+    "Aromatherapy Massage": {
+      description: "Combines essential oils with gentle massage techniques.",
+      price: 130,
+    },
+    "Thai Massage": {
+      description:
+        "Focuses on stretching and deep pressure points for healing.",
+      price: 135,
+    },
   };
 
-  const selectedService = servicesInfo[bookingData.service] || { description: "Unknown service", price: 0 };
+  const selectedService = servicesInfo[bookingData.service] || {
+    description: "Unknown service",
+    price: 0,
+  };
 
-  const handleCompleteBooking = () => {
-    setIsConfirmed(true); // Show confirmation message
+  const handleCompleteBooking = async () => {
+    try {
+      // Format the booking data
+      const bookingPayload = {
+        customerEmail: bookingData.email,
+        customerName: bookingData.name,
+        bookingDate: bookingData.date,
+        status: "confirmed", // Default status for new bookings
+        service: bookingData.service,
+        serviceDescription: selectedService.description,
+      };
+
+      // Send booking data to API
+      await api.post("/booking", bookingPayload);
+
+      // Update UI to show confirmation
+      setIsConfirmed(true);
+    } catch (error) {
+      console.error("Failed to create booking:", error);
+      // You might want to add error handling UI here
+      alert("Failed to complete booking. Please try again.");
+    }
   };
 
   return (
@@ -48,14 +90,18 @@ const Checkout = () => {
         ) : (
           // Original checkout form
           <>
-            <p className="checkout-intro">Review your selections and complete your booking.</p>
+            <p className="checkout-intro">
+              Review your selections and complete your booking.
+            </p>
 
             <div className="checkout-section">
               <h2>Your Booking</h2>
               <div className="checkout-details">
                 <div className="checkout-item">
                   <p className="item-title">{bookingData.service}</p>
-                  <p className="item-description">{selectedService.description}</p>
+                  <p className="item-description">
+                    {selectedService.description}
+                  </p>
                   <p className="item-price">${selectedService.price}</p>
                 </div>
               </div>
@@ -70,7 +116,8 @@ const Checkout = () => {
                 Tax: <span>${(selectedService.price * 0.125).toFixed(2)}</span>
               </p>
               <p className="summary-line total">
-                Total: <span>${(selectedService.price * 1.125).toFixed(2)}</span>
+                Total:{" "}
+                <span>${(selectedService.price * 1.125).toFixed(2)}</span>
               </p>
             </div>
 

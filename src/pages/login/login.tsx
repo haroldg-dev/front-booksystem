@@ -17,18 +17,26 @@ function Login({ onLoginSuccess }: LoginProps) {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    api.post("/auth/login", { email: username, password }).then((response) => {
-      console.log(response);
-      if (response.data.status == 200) {
-        const userId = response.data.payload.user;
-        alert("Login successful!");
-        setAuthenticated(true);
-        setUserId(userId);
-        navigate("/");
-      } else {
+    api
+      .post("/auth/login", { email: username, password })
+      .then((response) => {
+        console.log(response);
+        if (response.data.status == 200) {
+          const userId = response.data.payload.userId;
+          alert("Login successful!");
+          setAuthenticated(true);
+          setUserId(userId);
+          navigate("/");
+        } else {
+          alert("Invalid credentials!");
+          navigate("/login");
+        }
+      })
+      .catch((error) => {
+        console.error("Error logging in: ", error);
         alert("Invalid credentials!");
-      }
-    });
+        navigate("/login");
+      });
   };
 
   return (
