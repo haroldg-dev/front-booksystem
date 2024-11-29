@@ -11,10 +11,7 @@ export interface HeaderProps {
 export function Header({ activeNav }: HeaderProps) {
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // const authenticated = AuthContext;
   const { setAuthenticated, authenticated } = useContext(AuthContext);
-  // const handleLogin = () => setAuthenticated(true);
 
   function handleSignInBtn(e: React.MouseEvent) {
     e.preventDefault();
@@ -41,7 +38,7 @@ export function Header({ activeNav }: HeaderProps) {
 
   const linkStyle: React.CSSProperties = {
     color: "#000",
-    padding: "8px 20px",
+    // padding: "8px 20px",
     borderRadius: "4px",
     transition: "background-color 0.3s ease",
     border: "none",
@@ -97,7 +94,7 @@ export function Header({ activeNav }: HeaderProps) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto me-5 align-items-center gap-2 mb-2 mb-lg-0">
+          <ul className="navbar-nav ms-auto me-lg-5 align-items-center gap-2 mb-2 mb-lg-0">
             <li className="nav-item">
               <button
                 className={`btn ${activeNav === "home" ? "active" : ""}`}

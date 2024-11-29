@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./services_card.css";
+import { Link } from "react-router-dom";
 
 //TODO: set img right or left if the services card even or odd
 
@@ -23,7 +24,7 @@ export function ServicesCard({ imgSide }: ServicesCardProps) {
     <div className="container mb-2" style={{ maxWidth: "900px" }}>
       <div className="row py-3 px-5 border">
         <div
-          className={`img_wrapper col-6 d-flex justify-content-center ${
+          className={`img_wrapper col-md-6 d-flex justify-content-center ${
             imgLeft ? "order-1" : "order-2"
           }`}
         >
@@ -34,12 +35,12 @@ export function ServicesCard({ imgSide }: ServicesCardProps) {
           />
         </div>
         <div
-          className={`service_info_wrapper col-6 d-flex flex-column justify-content-center ${
-            imgLeft ? "order-2" : "order-1"
+          className={`service_info_wrapper col-md-6 d-flex flex-column justify-content-center align-items-center ${
+            imgLeft ? "order-1 order-md-2" : "order-2 order-md-1"
           }`}
         >
           <h3 className="mb-4">Hot Stone Massage</h3>
-          <div className="service_details_wrapper d-flex flex-column align-items-start mb-4">
+          <div className="service_details_wrapper d-flex flex-column align-items-center align-items-md-start mb-4">
             <p className="fw-bold">
               Description: <span className="fw-normal">General Medicine</span>
             </p>
@@ -51,8 +52,10 @@ export function ServicesCard({ imgSide }: ServicesCardProps) {
             </p>
           </div>
           <div className="btn_wrapper">
-            <button type="button" className="btn btn-outline-primary mx-5 px-5">
-              Book Now
+            <button type="button" className="btn btn-dark mx-5 px-5">
+              <Link to={"/book"} className="link-light text-decoration-none">
+                Book Now
+              </Link>
             </button>
           </div>
         </div>

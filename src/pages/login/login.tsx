@@ -13,16 +13,17 @@ function Login({ onLoginSuccess }: LoginProps) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { setAuthenticated } = useContext(AuthContext);
+  const { setAuthenticated, setUserId } = useContext(AuthContext);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     api.post("/auth/login", { email: username, password }).then((response) => {
       console.log(response);
       if (response.data.status == 200) {
+        const userId = response.data.payload.user;
         alert("Login successful!");
         setAuthenticated(true);
-        console.log(response);
+        setUserId(userId);
         navigate("/");
       } else {
         alert("Invalid credentials!");
@@ -31,7 +32,7 @@ function Login({ onLoginSuccess }: LoginProps) {
   };
 
   return (
-    <>
+    <div className="loginWrapper">
       <Header activeNav="book" />
       <div className="loginBody">
         <div className="login-container">
@@ -70,7 +71,7 @@ function Login({ onLoginSuccess }: LoginProps) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

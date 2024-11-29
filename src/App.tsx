@@ -17,11 +17,14 @@ import { AuthContext } from "./context/AuthContext";
 
 function App() {
   const [authenticated, setAuthenticated] = useState<boolean>(false);
-  console.log(authenticated);
+  const [userId, setUserId] = useState("");
+  console.log(userId);
 
   return (
     <div id="root">
-      <AuthContext.Provider value={{ authenticated, setAuthenticated }}>
+      <AuthContext.Provider
+        value={{ authenticated, setAuthenticated, userId, setUserId }}
+      >
         <BrowserRouter>
           <div className="main-content">
             <Routes>
@@ -42,10 +45,6 @@ function App() {
                   />
                 }
               />
-              {/* <Route
-                path="/home"
-                element={isAuthenticated ? <Home /> : <Navigate to="/login" />}
-              /> */}
               <Route path="/services" element={<Services />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route

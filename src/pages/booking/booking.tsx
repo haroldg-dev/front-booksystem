@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./booking.css";
 import { Header } from "../../components/Header/header";
 import { api } from "../../services/api";
+import { AuthContext } from "../../context/AuthContext";
 
 function Booking() {
   const [user, setUser] = useState({});
@@ -12,6 +13,7 @@ function Booking() {
     service: "",
   });
   const navigate = useNavigate();
+  const { userId } = useContext(AuthContext);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -40,9 +42,10 @@ function Booking() {
 
   useEffect(() => {
     async function fetchUser() {
-      const response = await api.get(`/person/`);
-      setUser(response.data);
-      setFormData({ ...formData, name: response.data });
+      const response = await api.get(`/person/${userId}`);
+      const firstName = response.data.firstName;
+      const lastName = response.data.lastName;
+      setFormData({ ...formData, name: `${firstName}  ${lastName}` });
     }
 
     fetchUser();
