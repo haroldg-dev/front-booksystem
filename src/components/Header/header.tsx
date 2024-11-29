@@ -127,12 +127,13 @@ export function Header({ activeNav }: HeaderProps) {
               >
                 Services
               </button>
-              {isDropdownOpen && (
+              {/* {isDropdownOpen && (
                 <ul className="dropdown-menu" style={{ display: "block" }}>
                   <li>
                     <Link
                       className="dropdown-item"
-                      to="/services/swedish-massage"
+                      // to="/services/swedish-massage" //need to fix this
+                      to="/services"
                     >
                       Swedish Massage
                     </Link>
@@ -140,7 +141,8 @@ export function Header({ activeNav }: HeaderProps) {
                   <li>
                     <Link
                       className="dropdown-item"
-                      to="/services/deep-tissue-massage"
+                      // to="/services/deep-tissue-massage" //need to fix this
+                      to="/services"
                     >
                       Deep Tissue Massage
                     </Link>
@@ -148,7 +150,8 @@ export function Header({ activeNav }: HeaderProps) {
                   <li>
                     <Link
                       className="dropdown-item"
-                      to="/services/hot-stone-massage"
+                      // to="/services/hot-stone-massage" //need to fix this
+                      to="/services"
                     >
                       Hot Stone Massage
                     </Link>
@@ -156,18 +159,23 @@ export function Header({ activeNav }: HeaderProps) {
                   <li>
                     <Link
                       className="dropdown-item"
-                      to="/services/aromatherapy-massage"
+                      // to="/services/aromatherapy-massage" //need to fix this
+                      to="/services"
                     >
                       Aromatherapy Massage
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/services/thai-massage">
+                    <Link
+                      className="dropdown-item"
+                      // to="/services/thai-massage" //need to fix this
+                      to="/services"
+                    >
                       Thai Massage
                     </Link>
                   </li>
                 </ul>
-              )}
+              )} */}
             </li>
 
             <li className="nav-item">

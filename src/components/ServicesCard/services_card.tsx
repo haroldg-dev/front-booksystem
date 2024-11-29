@@ -6,9 +6,21 @@ import { Link } from "react-router-dom";
 
 interface ServicesCardProps {
   imgSide: "left" | "right";
+  name: string;
+  description: string;
+  duration: number;
+  price: number;
+  imgUrl: string;
 }
 
-export function ServicesCard({ imgSide }: ServicesCardProps) {
+export function ServicesCard({
+  imgSide,
+  name,
+  description,
+  duration,
+  price,
+  imgUrl,
+}: ServicesCardProps) {
   const [imgLeft, setImgLeft] = useState(true);
 
   useEffect(() => {
@@ -28,27 +40,22 @@ export function ServicesCard({ imgSide }: ServicesCardProps) {
             imgLeft ? "order-1" : "order-2"
           }`}
         >
-          <img
-            src="https://images.squarespace-cdn.com/content/v1/5f2864b6ee63644ee0b157d3/1632770146028-9GIGWC85SW4D73W1M42C/hot-stone-massage.jpg"
-            alt=""
-            className="img-fluid img-thumbnail"
-          />
+          <img src={imgUrl} alt="" className="img-fluid img-thumbnail" />
         </div>
         <div
           className={`service_info_wrapper col-md-6 d-flex flex-column justify-content-center align-items-center ${
             imgLeft ? "order-1 order-md-2" : "order-2 order-md-1"
           }`}
         >
-          <h3 className="mb-4">Hot Stone Massage</h3>
+          <h3 className="mb-4">{name}</h3>
           <div className="service_details_wrapper d-flex flex-column align-items-center align-items-md-start mb-4">
+            <p className="fw-bold text-md-start">Description:</p>
+            <p className="fw-normal text-md-start">{description}</p>
             <p className="fw-bold">
-              Description: <span className="fw-normal">General Medicine</span>
+              Duration: <span className="fw-normal">{duration} min</span>
             </p>
             <p className="fw-bold">
-              Duration: <span className="fw-normal">60 min</span>
-            </p>
-            <p className="fw-bold">
-              Price: <span className="fw-normal">$80</span>
+              Price: <span className="fw-normal">${price}</span>
             </p>
           </div>
           <div className="btn_wrapper">

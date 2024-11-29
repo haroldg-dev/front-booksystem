@@ -4,9 +4,40 @@ import "./home.css";
 import { ServicesCard } from "../../components/ServicesCard/services_card";
 import { ReviewCarousel } from "../../components/ReviewsCarousel/reviews_carousel";
 import { Subscribe } from "../../components/Subscribe/subscribe";
+import { duration } from "@mui/material";
 
 function Home() {
   const navigate = useNavigate();
+
+  const dummyCombos = [
+    {
+      name: "Pain Relief Combo",
+      description:
+        "Deep Tissue and Hot Stone Massage work together to release muscle tension and ease pain.",
+      services: [
+        { name: "Deep Tissue Massage", price: 80, duration: 60 },
+        { name: "Hot Stone Massage", price: 95, duration: 60 },
+      ],
+      price: 175, // Total price before discount
+      discountedPrice: 166.25, // 5% discount applied (175 - 175 * 0.05)
+      imgUrl:
+        "https://movie-media-bucket-sofia.s3.us-east-2.amazonaws.com/Thai-massage.jpg",
+    },
+    {
+      name: "Ultimate Relaxation Combo",
+      description:
+        "A complete relaxation package with Aromatherapy, Swedish, and Hot Stone Massage.",
+      services: [
+        { name: "Aromatherapy Massage", price: 85, duration: 60 },
+        { name: "Swedish Massage", price: 70, duration: 60 },
+        { name: "Hot Stone Massage", price: 95, duration: 60 },
+      ],
+      price: 250, // Total price before discount
+      discountedPrice: 225, // 10% discount applied (250 - 250 * 0.10)
+      imgUrl:
+        "https://movie-media-bucket-sofia.s3.us-east-2.amazonaws.com/deep-tissue-massage.jpg",
+    },
+  ];
 
   function handleServicesBtn(e: React.MouseEvent) {
     e.preventDefault();
@@ -52,8 +83,20 @@ function Home() {
       </section>
       <section id="services_section">
         <h3 className="text-center m-5">Special Offers</h3>
-        <ServicesCard imgSide="left" />
-        <ServicesCard imgSide="right" />
+        {dummyCombos.map((combo, index) => (
+          <ServicesCard
+            key={index}
+            imgSide={index % 2 === 0 ? "left" : "right"}
+            name={combo.name}
+            description={combo.description}
+            duration={combo.services.reduce(
+              (acc, service) => acc + service.duration,
+              0
+            )} // Summing up all services' durations
+            price={combo.discountedPrice} // Assuming the discounted price is calculated earlier
+            imgUrl={combo.imgUrl}
+          />
+        ))}
       </section>
       <section id="reviews_carousel">
         <ReviewCarousel />
