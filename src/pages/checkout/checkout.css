@@ -71,7 +71,7 @@ h1 {
 }
 
 .item-price {
-  color: #6fa36f;
+  color: #0d7d96;
   font-weight: bold;
   margin-top: 5px;
 }
@@ -110,7 +110,7 @@ h1 {
 }
 
 .checkout-button {
-  background-color: #6fa36f;
+  background-color: #000;
   color: #fff;
   padding: 12px 20px; 
   font-size: 1rem; 
