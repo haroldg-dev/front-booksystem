@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./services.css";
 import { Header } from "../../components/Header/header";
 import { api } from "../../services/api";
+import { ServicesModal } from "../../components/ServicesModal/services_modal";
 
 export interface Service {
   id: string;
@@ -13,36 +14,15 @@ export interface Service {
 
 const Services = () => {
   const [services, setServices] = useState<Service[]>([]);
-  console.log(services);
+  const [selectedService, setSelectedService] = useState<Service | null>(null); // Track selected service for the modal
 
-  const servicesList = [
-    {
-      title: "Swedish Massage",
-      description: "A relaxing full-body massage to ease tension.",
-      image: require("../../assets/swedish.jpg"),
-    },
-    {
-      title: "Deep Tissue Massage",
-      description: "Targets deeper layers of muscles to relieve chronic pain.",
-      image: require("../../assets/deep-tissue-massage.jpg"),
-    },
-    {
-      title: "Hot Stone Massage",
-      description: "Warm stones are used to relax and soothe muscles.",
-      image: require("../../assets/hot-stone.jpg"),
-    },
-    {
-      title: "Aromatherapy Massage",
-      description: "Combines essential oils with gentle massage techniques.",
-      image: require("../../assets/aromatherapy.jpg"),
-    },
-    {
-      title: "Thai Massage",
-      description:
-        "Focuses on stretching and deep pressure points for healing.",
-      image: require("../../assets/Thai-massage.jpg"),
-    },
-  ];
+  const handleServiceClick = (service: Service) => {
+    setSelectedService(service); // Set the clicked service for the modal
+  };
+
+   const handleModalClose = () => {
+     setSelectedService(null); // Close the modal
+   };
 
   useEffect(() => {
     async function fetchServices() {
@@ -70,19 +50,30 @@ const Services = () => {
           <h1>Our Services</h1>
           <div className="services-list">
             {services.map((service, index) => (
-              <div className="service-card" key={index}>
+              <div
+                className="service-card"
+                key={index}
+                onClick={() => handleServiceClick(service)}
+              >
                 <img
                   src={service.imgUrl}
                   alt={service.name}
                   className="service-image"
                 />
                 <h2>{service.name}</h2>
-                <p>{service.description}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
+      {/* Show modal only when a service is selected */}
+      {selectedService && (
+        <ServicesModal
+          show={!!selectedService} // Show modal if selectedService is not null
+          onHide={handleModalClose}
+          service={selectedService} // Pass selected service to modal
+        />
+      )}
     </>
   );
 };
