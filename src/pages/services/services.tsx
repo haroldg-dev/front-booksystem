@@ -42,7 +42,7 @@ const Services = () => {
       <Header activeNav="services" />
       <div className="servicesBody">
         <div className="header-title">
-          <h1>Lagoon Paradise Spa</h1>
+          <h1>Paradise Lagoon Spa</h1>
           <br />
           <h2>Vancouver</h2>
         </div>
