@@ -1,6 +1,10 @@
-# TODO
+# SPA Booking System
 
-- Singup and logout feature
-- Checkout flow
-- Email book confirmation
-- UI properly
+> http://fswd110-spa-booking-system.s3-website.us-east-2.amazonaws.com/
+
+# How to use
+
+```
+npm install
+npm run start
+```
