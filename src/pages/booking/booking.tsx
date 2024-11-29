@@ -32,12 +32,12 @@ function Booking() {
     if (
       !formData.name ||
       !formData.date ||
-      formData.service === "Choose a Service"
+      formData.service.trim() === "" || // Check for empty service
+      formData.service === "Choose a Service" // Ensure default value is not valid
     ) {
       alert("Please fill in all fields");
       return;
     }
-
     navigate("/checkout", { state: formData });
   };
 
