@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./sign_up.css"; 
+import "./sign_up.css";
 import { api } from "../../services/api";
 import Alert from "@mui/material/Alert";
 import { Header } from "../../components/Header/header";
-
+import { AuthContext } from "../../context/AuthContext";
 
 interface Props {
   onCreatedAccount: (isCreated: boolean) => void;
@@ -16,6 +16,7 @@ function SignUp({ onCreatedAccount }: Props) {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const { setAuthenticated, setUserId } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -30,12 +31,15 @@ function SignUp({ onCreatedAccount }: Props) {
       return alert("Password must have at least 6 characters.");
     }
 
-    
     api
       .post("/person", { firstName, lastName, email, password, phone })
       .then((response) => {
         console.log(response);
+        const userId = response.data.payload.userId;
+        console.log(userId);
         alert("Account created!");
+        setAuthenticated(true);
+        setUserId(userId);
         onCreatedAccount(true);
         navigate("/");
       })

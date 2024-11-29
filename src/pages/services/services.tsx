@@ -2,28 +2,37 @@ import React, { useEffect, useState } from "react";
 import "./services.css";
 import { Header } from "../../components/Header/header";
 import { api } from "../../services/api";
+import { ServicesModal } from "../../components/ServicesModal/services_modal";
 
-interface ServiceType {
+export interface Service {
+  id: string;
   name: string;
   description: string;
-  imgUrl: string;
   price: number;
-  duration: string;
-  services_id: string;
+  imgUrl: string;
 }
 
 const Services = () => {
-  const [servicesList, setServicesList] = useState<ServiceType[]>([]);
+  const [services, setServices] = useState<Service[]>([]);
+  const [selectedService, setSelectedService] = useState<Service | null>(null); // Track selected service for the modal
+
+  const handleServiceClick = (service: Service) => {
+    setSelectedService(service); // Set the clicked service for the modal
+  };
+
+  const handleModalClose = () => {
+    setSelectedService(null); // Close the modal
+  };
 
   useEffect(() => {
-    const fetchServices = async () => {
+    async function fetchServices() {
       try {
         const response = await api.get("/massageService");
-        setServicesList(response.data);
+        setServices(response.data); // Set the services from the API
       } catch (error) {
-        console.error("Error fetching services:", error);
+        console.error("Error fetching services", error);
       }
-    };
+    }
 
     fetchServices();
   }, []);
@@ -40,22 +49,31 @@ const Services = () => {
         <div className="services-container">
           <h1>Our Services</h1>
           <div className="services-list">
-            {servicesList.map((service) => (
-              <div className="service-card" key={service.services_id}>
+            {services.map((service, index) => (
+              <div
+                className="service-card"
+                key={index}
+                onClick={() => handleServiceClick(service)}
+              >
                 <img
                   src={service.imgUrl}
                   alt={service.name}
                   className="service-image"
                 />
                 <h2>{service.name}</h2>
-                <p>{service.description}</p>
-                <p>Price: ${service.price}</p>
-                <p>Duration: {service.duration}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
+      {/* Show modal only when a service is selected */}
+      {selectedService && (
+        <ServicesModal
+          show={!!selectedService} // Show modal if selectedService is not null
+          onHide={handleModalClose}
+          service={selectedService} // Pass selected service to modal
+        />
+      )}
     </>
   );
 };

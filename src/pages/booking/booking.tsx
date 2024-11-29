@@ -45,7 +45,7 @@ function Booking() {
       const response = await api.get(`/person/${userId}`);
       const firstName = response.data.firstName;
       const lastName = response.data.lastName;
-      setFormData({ ...formData, name: `${firstName}  ${lastName}` });
+      setFormData({ ...formData, name: `${firstName} ${lastName}` });
     }
 
     fetchUser();
