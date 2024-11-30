@@ -7,7 +7,7 @@ const About = () => {
       <Header activeNav="book" />
       <div className="about-body">
         <div className="about-container my-2">
-          <div className="about-left">
+          <div className="about-left col-12 col-md-6">
             <h1>Welcome to Paradise Lagoon Spa</h1>
             <p>
               At Paradise Lagoon Spa, we specialize in creating a tranquil
@@ -31,7 +31,7 @@ const About = () => {
               journey.
             </p>
           </div>
-          <div className="about-right">
+          <div className="about-right col-12 col-md-6">
             <div className="shop-image"></div>
           </div>
         </div>
