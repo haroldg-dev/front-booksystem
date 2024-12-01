@@ -11,14 +11,14 @@ interface LoginProps {
 
 function Login({ onLoginSuccess }: LoginProps) {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setAuthenticated, setUserId } = useContext(AuthContext);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     api
-      .post("/auth/login", { email: username, password })
+      .post("/auth/login", { email: email, password })
       .then((response) => {
         console.log(response);
         if (response.data.status == 200) {
@@ -51,9 +51,9 @@ function Login({ onLoginSuccess }: LoginProps) {
                 <label htmlFor="email">Email</label>
                 <input
                   type="text"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="input-group">
